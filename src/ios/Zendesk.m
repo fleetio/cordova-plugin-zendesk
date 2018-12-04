@@ -1,5 +1,7 @@
 #import "Zendesk.h"
 
+#import "AppDelegate.h"
+
 @import ZendeskSDK;
 @import ZendeskCoreSDK;
 
@@ -26,9 +28,21 @@
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId]; 
 }
 
+- (void)showTicketRequest:(CDVInvokedUrlCommand *)command {
+  UINavigationController *navigationController = [[UINavigationController alloc] init];
+  UIViewController *ticketRequestController = [ZDKRequestUi buildRequestUiWith:@[]];
+  
+  [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:navigationController animated:YES completion:^{}];
+  [navigationController pushViewController:ticketRequestController animated:YES];
+  
+  [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
 - (void)showHelpCenter:(CDVInvokedUrlCommand *)command {
+  UINavigationController *navigationController = [[UINavigationController alloc] init];
   UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[]];
-  [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:helpCenter animated:YES completion:^{}];
+  [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:navigationController animated:YES completion:^{}];
+  [navigationController pushViewController:helpCenter animated:YES];
 
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
