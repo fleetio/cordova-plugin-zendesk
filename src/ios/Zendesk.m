@@ -27,9 +27,8 @@
 }
 
 - (void)showHelpCenter:(CDVInvokedUrlCommand *)command {
-  
   UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[]];
-  [self.viewController.navigationController pushViewController:helpCenter animated:YES];
+  [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:helpCenter animated:YES completion:^{}];
 
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
