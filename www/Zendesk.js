@@ -10,8 +10,13 @@ Zendesk.prototype.setAnonymousIdentity = function(name, email, successCallback, 
   exec(successCallback, errorCallback, 'Zendesk', 'setAnonymousIdentity', [name, email]);
 }
 
+Zendesk.prototype.showTicketRequest = function(successCallback, errorCallback) {
+  exec(successCallback, errorCallback, 'Zendesk', 'showTicketRequest', []);
+}
+
 Zendesk.prototype.showHelpCenter = function(successCallback, errorCallback) {
   exec(successCallback, errorCallback, 'Zendesk', 'showHelpCenter', []);
 }
+
 var Zendesk = new Zendesk();
 module.exports = Zendesk;
