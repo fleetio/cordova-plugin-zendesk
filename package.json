@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-zendesk",
+  "version": "1.0.0",
+  "description": "Cordova plugin for integrating with Zendesk",
+  "main": "www/Zendesk.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rarestep/cordova-plugin-zendesk.git"
+  },
+  "author": "Rarestep",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rarestep/cordova-plugin-zendesk/issues"
+  },
+  "homepage": "https://github.com/rarestep/cordova-plugin-zendesk#readme"
+}
