@@ -23,7 +23,6 @@
     <header-file src="src/ios/Zendesk.h" />
     <source-file src="src/ios/Zendesk.m" />
 
-    <pods-config use-frameworks="true"></pods-config>
     <pod name="ZendeskSDK" />
   </platform>
 </plugin>
