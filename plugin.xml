@@ -9,10 +9,6 @@
     <clobbers target="Zendesk" />
   </js-module>
 
-  <preference name="appId" />
-  <preference name="clientId" />
-  <preference name="zendeskUrl" />
-
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
       <feature name="Zendesk">
