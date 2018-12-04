@@ -5,6 +5,17 @@
 
 @implementation Zendesk
 
+- (void)initialize:(CDVInvokedUrlCommand *)command {
+  NSString *appId = [command.arguments objectAtIndex:0];
+  NSString *clientId = [command.arguments objectAtIndex:1];
+  NSString *zendeskUrl = [command.arguments objectAtIndex:2];
+  
+  [ZDKZendesk initializeWithAppId:appId clientId:clientId zendeskUrl:zendeskUrl];
+  [ZDKSupport initializeWithZendesk: [ZDKZendesk instance]];
+  
+  [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
 - (void)setAnonymousIdentity:(CDVInvokedUrlCommand *)command { 
   NSString *name = [command.arguments objectAtIndex:0];
   NSString *email = [command.arguments objectAtIndex: 1];
