@@ -23,6 +23,6 @@
     <header-file src="src/ios/Zendesk.h" />
     <source-file src="src/ios/Zendesk.m" />
 
-    <pod name="ZendeskSDK" />
+    <pod name="ZendeskSDK" version="~> 2.3.0" />
   </platform>
 </plugin>
