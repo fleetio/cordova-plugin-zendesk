@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-zendesk" version="1.0.0">
+  <name>Cordova Zendesk Plugin</name>
+  <description>Cordova plugin for integrating with Zendesk</description>
+
+  <dependency id="cordova-plugin-cocoapod-support"/>
+
+  <js-module src="www/Zendesk.js" name="Zendesk">
+    <clobbers target="Zendesk" />
+  </js-module>
+
+  <preference name="appId" />
+  <preference name="clientId" />
+  <preference name="zendeskUrl" />
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="Zendesk">
+        <param name="ios-package" value="Zendesk">
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/Zendesk.h" />
+    <source-file src="src/ios/Zendesk.m" />
+
+    <pods-config use-frameworks="true"></pods-config>
+    <pod name="ZendeskSDK" />
+  </platform>
+</plugin>
