@@ -29,22 +29,33 @@
 }
 
 - (void)showTicketRequest:(CDVInvokedUrlCommand *)command {
-  UINavigationController *navigationController = [[UINavigationController alloc] init];
-  UIViewController *ticketRequestController = [ZDKRequestUi buildRequestUiWith:@[]];
+  ZDKRequestUiConfiguration *config = [ZDKRequestUiConfiguration new];
+  config.subject = @"Fleetio Go";
+  config.tags = @[@"ios", @"mobile"];
+  UIViewController *ticketRequestController = [ZDKRequestUi buildRequestUiWith:@[config]];
+  [self presentViewController:ticketRequestController];
   
-  [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:navigationController animated:YES completion:^{}];
-  [navigationController pushViewController:ticketRequestController animated:YES];
+  [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
+- (void)showUserTickets:(CDVInvokedUrlCommand *)command {
+  UIViewController *requestListController = [ZDKRequestUi buildRequestList];
+  [self presentViewController:requestListController];
   
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
 - (void)showHelpCenter:(CDVInvokedUrlCommand *)command {
-  UINavigationController *navigationController = [[UINavigationController alloc] init];
-  UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[]];
-  [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:navigationController animated:YES completion:^{}];
-  [navigationController pushViewController:helpCenter animated:YES];
+  UIViewController *helpCenterController = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[]];
+  [self presentViewController:helpCenterController];
 
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
+- (void)presentViewController:(UIViewController *)viewController {
+  UINavigationController *navigationController = [[UINavigationController alloc] init];
+  [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:navigationController animated:YES completion:^{}];
+  [navigationController pushViewController:viewController animated:YES];
 }
 
 @end

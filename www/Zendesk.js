@@ -18,5 +18,9 @@ Zendesk.prototype.showTicketRequest = function(successCallback, errorCallback) {
   exec(successCallback, errorCallback, 'Zendesk', 'showTicketRequest', []);
 }
 
+Zendesk.prototype.showUserTickets = function(successCallback, errorCallback) {
+  exec(successCallback, errorCallback, 'Zendesk', 'showUserTickets', []);
+}
+
 var Zendesk = new Zendesk();
 module.exports = Zendesk;
