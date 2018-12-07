@@ -8,6 +8,9 @@ import org.json.JSONException;
 
 import zendesk.core.AnonymousIdentity;
 import zendesk.core.Identity;
+import zendesk.support.guide.HelpCenterActivity;
+import zendesk.support.request.RequestActivity;
+import zendesk.support.requestlist.RequestListActivity;
 
 public class Zendesk extends CordovaPlugin {
   private static final String ACTION_INITIALIZE = "initialize";
@@ -36,11 +39,11 @@ public class Zendesk extends CordovaPlugin {
 
       zendesk.core.Zendesk.INSTANCE.setIdentity(identity);
     } else if (ACTION_SHOW_HELP_CENTER.equals(action)) {
-
+      HelpCenterActivity.builder().show(this.cordova.getActivity());
     } else if (ACTION_SHOW_TICKET_REQUEST.equals(action)) {
-
+      RequestActivity.builder().show(this.cordova.getActivity());
     } else if (ACTION_SHOW_USER_TICKETS.equals(action)) {
-
+      RequestListActivity.builder().show(this.cordova.getActivity());
     } else {
       callbackContext.error("Invalid action: " + action);
       return false;
