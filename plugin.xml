@@ -16,10 +16,10 @@
       </feature>
     </config-file>
 
+    <pod name="ZendeskSDK" version="~> 2.3.0" />
+
     <header-file src="src/ios/Zendesk.h" />
     <source-file src="src/ios/Zendesk.m" />
-
-    <pod name="ZendeskSDK" version="~> 2.3.0" />
   </platform>
 
   <platform name="android">
@@ -31,5 +31,7 @@
     </config-file>
 
     <source-file src="src/android/Zendesk.java" target-dir="src/com/rarestep/zendesk" />
+
+    <framework src="src/android/zendesk.gradle" custom="true" type="gradleReference" />
   </platform>
 </plugin>

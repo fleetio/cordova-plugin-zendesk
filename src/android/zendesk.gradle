@@ -1,0 +1,11 @@
+repositories {
+  google()
+  jcenter()
+  maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
+}
+
+dependencies {
+  compile(group: 'com.zendesk', name: 'support', version: '2.2.1') {
+    exclude module: 'support-core-utils'
+  }
+}
