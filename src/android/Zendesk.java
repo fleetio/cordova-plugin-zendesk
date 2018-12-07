@@ -1,6 +1,7 @@
 package com.rarestep.zendesk;
 
 import android.content.Context;
+import android.content.Intent;
 
 import org.apache.cordova.*;
 
@@ -39,11 +40,14 @@ public class Zendesk extends CordovaPlugin {
 
       zendesk.core.Zendesk.INSTANCE.setIdentity(identity);
     } else if (ACTION_SHOW_HELP_CENTER.equals(action)) {
-      HelpCenterActivity.builder().show(this.cordova.getActivity());
+      Intent intent = HelpCenterActivity.builder().intent(this.getContext());
+      this.cordova.getActivity().startActivity(intent);
     } else if (ACTION_SHOW_TICKET_REQUEST.equals(action)) {
-      RequestActivity.builder().show(this.cordova.getActivity());
+      Intent intent = RequestActivity.builder().intent(this.getContext());
+      this.cordova.getActivity().startActivity(intent);
     } else if (ACTION_SHOW_USER_TICKETS.equals(action)) {
-      RequestListActivity.builder().show(this.cordova.getActivity());
+      Intent intent = RequestActivity.builder().intent(this.getContext());
+      RequestListActivity.builder().intent(this.getContext());
     } else {
       callbackContext.error("Invalid action: " + action);
       return false;
