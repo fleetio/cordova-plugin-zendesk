@@ -22,6 +22,14 @@
   NSString *name = [command.arguments objectAtIndex:0];
   NSString *email = [command.arguments objectAtIndex: 1];
 
+  if ([name isKindOfClass:[NSNull class]]) {
+    name = nil;
+  }
+  
+  if ([email isKindOfClass:[NSNull class]]) {
+    email = nil;
+  }
+  
   id<ZDKObjCIdentity> userIdentity = [[ZDKObjCAnonymous alloc] initWithName:name email:email];
   [[ZDKZendesk instance] setIdentity:userIdentity];
 
