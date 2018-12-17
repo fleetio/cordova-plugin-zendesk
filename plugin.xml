@@ -30,6 +30,21 @@
       </feature>
     </config-file>
 
+    <config-file target="AndroidManifest.xml" target="/manifest/application/">
+			<activity
+				android:name="zendesk.support.guide.HelpCenterActivity"
+				android:theme="@style/Base.Theme.AppCompat" />
+			<activity
+				android:name="zendesk.support.guide.ViewArticleActivity"
+				android:theme="@style/Base.Theme.AppCompat" />
+			<activity
+				android:name="zendesk.support.requestlist.RequestListActivity"
+				android:theme="@style/Base.Theme.AppCompat" />
+			<activity
+				android:name="zendesk.support.request.RequestActivity"
+				android:theme="@style/Base.Theme.AppCompat" />
+    </config-file>
+
     <source-file src="src/android/Zendesk.java" target-dir="src/com/rarestep/zendesk" />
 
     <framework src="src/android/zendesk.gradle" custom="true" type="gradleReference" />
