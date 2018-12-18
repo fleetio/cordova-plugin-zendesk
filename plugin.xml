@@ -30,7 +30,7 @@
       </feature>
     </config-file>
 
-    <config-file target="AndroidManifest.xml" target="/manifest/application">
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <activity
         android:name="zendesk.support.guide.HelpCenterActivity"
         android:theme="@style/Base.Theme.AppCompat" />
