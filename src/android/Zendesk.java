@@ -48,11 +48,11 @@ public class Zendesk extends CordovaPlugin {
 
       zendesk.core.Zendesk.INSTANCE.setIdentity(identity);
     } else if (ACTION_SHOW_HELP_CENTER.equals(action)) {
-      HelpCenterActivity.builder().show(this.getContext());
+      HelpCenterActivity.builder().show(this.cordova.getActivity());
     } else if (ACTION_SHOW_TICKET_REQUEST.equals(action)) {
-      RequestActivity.builder().show(this.getContext());
+      RequestActivity.builder().show(this.cordova.getActivity());
     } else if (ACTION_SHOW_USER_TICKETS.equals(action)) {
-      RequestListActivity.builder().show(this.getContext());
+      RequestListActivity.builder().show(this.cordova.getActivity());
     } else {
       callbackContext.error("Invalid action: " + action);
       return false;
