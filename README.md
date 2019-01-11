@@ -28,6 +28,15 @@ var email = "tdurden@paperstreetsoapco.com";
 window.zendesk.setAnonymousIdentity(name, email);
 ```
 
+### setIdentity
+Sets the Zendesk SDK to use a specific identity.
+
+```
+var token = "abcdef123456";
+
+window.zendesk.setIdentity(token);
+```
+
 ### showHelpCenter
 Presents a new view for browsing help center articles for the application. The articles displayed can be filtered by category, section, and labels.
 
@@ -53,7 +62,7 @@ Presents a new view for submitting a support ticket.
 var subject = "Widget Error";
 var tags = ["mobile", "widget"];
 
-window.zendesk.showTicketRequest();
+window.zendesk.showTicketRequest(subject, tags);
 ```
 
 ### showUserTickets
