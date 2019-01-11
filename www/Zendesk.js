@@ -43,11 +43,13 @@ Zendesk.prototype.showHelpCenter = function(groupType, groupIds, labels, success
 /**
  * Opens a native view allowing the user to submit a ticket
  * 
+ * @param subject The subject to assign to the new ticket
+ * @param tags An array of tags to assign to the new ticket
  * @param successCallback The callback to be executed upon command success
  * @param errorCallback The callback to be executed upon command failure
  */
-Zendesk.prototype.showTicketRequest = function(successCallback, errorCallback) {
-  exec(successCallback, errorCallback, 'Zendesk', 'showTicketRequest', []);
+Zendesk.prototype.showTicketRequest = function(subject, tags, successCallback, errorCallback) {
+  exec(successCallback, errorCallback, 'Zendesk', 'showTicketRequest', [subject, tags]);
 }
 
 /**
