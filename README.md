@@ -40,7 +40,7 @@ var groupType = "category";
 var groupIds = [1234, 5678];
 var labels = ["mobile", "ios"];
 
-window.zendesk.showHelpCenter(groupType, groupIds, labels)
+window.zendesk.showHelpCenter(groupType, groupIds, labels);
 ```
 
 ### showTicketRequest
@@ -50,12 +50,15 @@ Presents a new view for submitting a support ticket.
 * `tags` - An array of tags to assign to the new ticket (optional)
 
 ```
-window.zendesk.showTicketRequest()
+var subject = "Widget Error";
+var tags = ["mobile", "widget"];
+
+window.zendesk.showTicketRequest();
 ```
 
 ### showUserTickets
 Presents a new view listing a user's previously submitted tickets.
 
 ```
-window.zendesk.showUserTickets()
+window.zendesk.showUserTickets();
 ```
