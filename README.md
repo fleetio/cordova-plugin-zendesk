@@ -46,8 +46,8 @@ window.zendesk.showHelpCenter(groupType, groupIds, labels)
 ### showTicketRequest
 Presents a new view for submitting a support ticket.
 
-* `subject` - The subject to assign to the new ticket
-* `tags` - An array of tags to assign to the new ticket
+* `subject` - The subject to assign to the new ticket (optional)
+* `tags` - An array of tags to assign to the new ticket (optional)
 
 ```
 window.zendesk.showTicketRequest()
