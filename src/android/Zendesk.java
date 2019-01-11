@@ -1,18 +1,15 @@
 package com.rarestep.zendesk;
 
 import android.content.Context;
-import android.content.Intent;
-
-import com.fleetio.go_app.MainActivity;
-import com.zendesk.logger.Logger;
-
-import junit.framework.Test;
 
 import org.apache.cordova.*;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
-import zendesk.commonui.UiConfig;
+import java.util.ArrayList;
+import java.util.List;
+
 import zendesk.core.AnonymousIdentity;
 import zendesk.core.Identity;
 import zendesk.support.Support;
@@ -48,7 +45,23 @@ public class Zendesk extends CordovaPlugin {
 
       zendesk.core.Zendesk.INSTANCE.setIdentity(identity);
     } else if (ACTION_SHOW_HELP_CENTER.equals(action)) {
-      HelpCenterActivity.builder().show(this.cordova.getActivity());
+      String groupType = args.getString(0);
+      List<Long> groupIds = jsonArrayToList(args.getJSONArray(1));
+      List<String> labels = jsonArrayToList(args.getJSONArray(2);
+
+      zendesk.support.guide.HelpCenterUiConfig.Builder helpCenterActivityBuilder = HelpCenterActivity.builder();
+
+      if ("category".equals(groupType) && !groupIds.isEmpty()) {
+        helpCenterActivityBuilder.withArticlesForCategoryIds(groupIds);
+      } else if ("section".equals(groupType) && !groupIds.isEmpty()) {
+        helpCenterActivityBuilder.withArticlesForSectionIds(groupIds);
+      }
+
+      if (labels.size() > 0) {
+        helpCenterActivityBuilder.withLabelNames(labels);
+      }
+
+      helpCenterActivityBuilder.show(this.cordova.getActivity());
     } else if (ACTION_SHOW_TICKET_REQUEST.equals(action)) {
       RequestActivity.builder().show(this.cordova.getActivity());
     } else if (ACTION_SHOW_USER_TICKETS.equals(action)) {
@@ -64,5 +77,19 @@ public class Zendesk extends CordovaPlugin {
 
   private Context getContext() {
     return this.cordova.getActivity().getApplicationContext();
+  }
+
+  private <T> List<T> jsonArrayToList(JSONArray jsonArray) {
+    List<T> arrayList = new ArrayList<>();
+
+    for (int i = 0; i < jsonArray.length(); i++) {
+      try {
+        arrayList.add((T)jsonArray.get(i));
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+    }
+
+    return arrayList;
   }
 }
