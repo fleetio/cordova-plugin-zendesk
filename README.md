@@ -18,7 +18,6 @@ document.addEventListener("deviceready", function() {
 ### setAnonymousIdentity
 Sets the Zendesk SDK to use an anonymous identity. Name and email can optionally passed as identifying information to provide more context when submitting tickets. This method must be invoked after `initialize` and before any other plugin methods.
 
-Params:
 * `name` - The name of the user for identification purposes (optional)
 * `email` - The email of the user for identification purposes (optional)
 
@@ -46,6 +45,9 @@ window.zendesk.showHelpCenter(groupType, groupIds, labels)
 
 ### showTicketRequest
 Presents a new view for submitting a support ticket.
+
+* `subject` - The subject to assign to the new ticket
+* `tags` - An array of tags to assign to the new ticket
 
 ```
 window.zendesk.showTicketRequest()
