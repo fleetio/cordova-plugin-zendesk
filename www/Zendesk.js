@@ -30,8 +30,8 @@ Zendesk.prototype.setAnonymousIdentity = function(name, email, successCallback, 
 /**
  * Opens a native view for viewing the help center
  *
- * @param groupType Either "category" or "section" to filter articles by (optional)
- * @param groupIds Array of group identifiers to filter help center by (optional)
+ * @param groupType Either "category" or "section" to filter articles by group type (optional)
+ * @param groupIds Array of category or section group identifiers to filter help center articles (optional)
  * @param labels Array of labels to filter help center by (optional)
  * @param successCallback The callback to be executed upon command success
  * @param errorCallback The callback to be executed upon command failure
