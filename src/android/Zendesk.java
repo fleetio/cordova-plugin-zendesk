@@ -15,6 +15,7 @@ import zendesk.core.Identity;
 import zendesk.support.Support;
 import zendesk.support.guide.HelpCenterActivity;
 import zendesk.support.request.RequestActivity;
+import zendesk.support.request.RequestUiConfig;
 import zendesk.support.requestlist.RequestListActivity;
 
 public class Zendesk extends CordovaPlugin {
@@ -46,24 +47,56 @@ public class Zendesk extends CordovaPlugin {
       zendesk.core.Zendesk.INSTANCE.setIdentity(identity);
     } else if (ACTION_SHOW_HELP_CENTER.equals(action)) {
       String groupType = args.getString(0);
-      List<Long> groupIds = jsonArrayToList(args.getJSONArray(1));
-      List<String> labels = jsonArrayToList(args.getJSONArray(2);
+      List<Long> groupIds;
+      List<String> labels;
+
+
+      if (!args.isNull(1)) {
+        groupIds = jsonArrayToList(args.getJSONArray(1));
+      } else {
+        groupIds = new ArrayList<>();
+      }
+
+      if (!args.isNull(2)) {
+        labels = jsonArrayToList(args.getJSONArray(2));
+      } else {
+        labels = new ArrayList<>();
+      }
 
       zendesk.support.guide.HelpCenterUiConfig.Builder helpCenterActivityBuilder = HelpCenterActivity.builder();
 
       if ("category".equals(groupType) && !groupIds.isEmpty()) {
-        helpCenterActivityBuilder.withArticlesForCategoryIds(groupIds);
+        helpCenterActivityBuilder = helpCenterActivityBuilder.withArticlesForCategoryIds(groupIds);
       } else if ("section".equals(groupType) && !groupIds.isEmpty()) {
-        helpCenterActivityBuilder.withArticlesForSectionIds(groupIds);
+        helpCenterActivityBuilder = helpCenterActivityBuilder.withArticlesForSectionIds(groupIds);
       }
 
       if (labels.size() > 0) {
-        helpCenterActivityBuilder.withLabelNames(labels);
+        helpCenterActivityBuilder = helpCenterActivityBuilder.withLabelNames(labels);
       }
 
       helpCenterActivityBuilder.show(this.cordova.getActivity());
     } else if (ACTION_SHOW_TICKET_REQUEST.equals(action)) {
-      RequestActivity.builder().show(this.cordova.getActivity());
+      String subject = args.getString(0);
+      List<String> tags;
+
+      if (!args.isNull(1)) {
+        tags = jsonArrayToList(args.getJSONArray(1));
+      } else {
+        tags = new ArrayList<>();
+      }
+
+      RequestUiConfig.Builder requestActivityBuilder = RequestActivity.builder();
+
+      if (subject != null) {
+        requestActivityBuilder = requestActivityBuilder.withRequestSubject(subject);
+      }
+
+      if (!tags.isEmpty()) {
+        requestActivityBuilder = requestActivityBuilder.withTags(tags);
+      }
+
+      requestActivityBuilder.show(this.cordova.getActivity());
     } else if (ACTION_SHOW_USER_TICKETS.equals(action)) {
       RequestListActivity.builder().show(this.cordova.getActivity());
     } else {

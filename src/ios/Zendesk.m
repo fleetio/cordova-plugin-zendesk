@@ -68,8 +68,15 @@
   NSArray *tags = [command.arguments objectAtIndex:1];
   
   ZDKRequestUiConfiguration *config = [ZDKRequestUiConfiguration new];
-  config.subject = subject;
-  config.tags = tags;
+  
+  if (![subject isEqual:[NSNull null]]) {
+    config.subject = subject;
+  }
+  
+  if (![tags isEqual:[NSNull null]]) {
+    config.tags = tags;
+  }
+  
   UIViewController *ticketRequestController = [ZDKRequestUi buildRequestUiWith:@[config]];
   [self presentViewController:ticketRequestController];
   
