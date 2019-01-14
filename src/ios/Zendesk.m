@@ -41,7 +41,7 @@
   NSArray *groupIds = [command.arguments objectAtIndex: 1];
   NSArray *labels = [command.arguments objectAtIndex:2];
   
-  if (groupType != nil && groupIds != nil) {
+  if (![groupType isEqual:[NSNull null]] && ![groupIds isEqual:[NSNull null]]) {
     if ([groupType isEqualToString:@"category"]) {
       [helpCenterConfig setGroupType:ZDKHelpCenterOverviewGroupTypeCategory];
     } else if ([groupType isEqualToString:@"section"]) {
@@ -53,7 +53,7 @@
     [helpCenterConfig setGroupIds:groupIds];
   }
   
-  if (labels != nil) {
+  if (![labels isEqual:[NSNull null]]) {
     helpCenterConfig.labels = labels;
   }
   
