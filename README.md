@@ -18,7 +18,6 @@ document.addEventListener("deviceready", function() {
 ### setAnonymousIdentity
 Sets the Zendesk SDK to use an anonymous identity. Name and email can optionally passed as identifying information to provide more context when submitting tickets. This method must be invoked after `initialize` and before any other plugin methods.
 
-Params:
 * `name` - The name of the user for identification purposes (optional)
 * `email` - The email of the user for identification purposes (optional)
 
@@ -27,6 +26,15 @@ var name = "Tyler Durden";
 var email = "tdurden@paperstreetsoapco.com";
 
 window.zendesk.setAnonymousIdentity(name, email);
+```
+
+### setIdentity
+Sets the Zendesk SDK to use a specific identity.
+
+```
+var token = "abcdef123456";
+
+window.zendesk.setIdentity(token);
 ```
 
 ### showHelpCenter
@@ -41,19 +49,25 @@ var groupType = "category";
 var groupIds = [1234, 5678];
 var labels = ["mobile", "ios"];
 
-window.zendesk.showHelpCenter(groupType, groupIds, labels)
+window.zendesk.showHelpCenter(groupType, groupIds, labels);
 ```
 
 ### showTicketRequest
 Presents a new view for submitting a support ticket.
 
+* `subject` - The subject to assign to the new ticket (optional)
+* `tags` - An array of tags to assign to the new ticket (optional)
+
 ```
-window.zendesk.showTicketRequest()
+var subject = "Widget Error";
+var tags = ["mobile", "widget"];
+
+window.zendesk.showTicketRequest(subject, tags);
 ```
 
 ### showUserTickets
 Presents a new view listing a user's previously submitted tickets.
 
 ```
-window.zendesk.showUserTickets()
+window.zendesk.showUserTickets();
 ```
