@@ -14,6 +14,7 @@ import zendesk.core.AnonymousIdentity;
 import zendesk.core.Identity;
 import zendesk.support.Support;
 import zendesk.support.guide.HelpCenterActivity;
+import zendesk.support.guide.ViewArticleActivity;
 import zendesk.support.request.RequestActivity;
 import zendesk.support.request.RequestUiConfig;
 import zendesk.support.requestlist.RequestListActivity;
@@ -22,6 +23,7 @@ public class Zendesk extends CordovaPlugin {
   private static final String ACTION_INITIALIZE = "initialize";
   private static final String ACTION_SET_ANONYMOUS_IDENTITY = "setAnonymousIdentity";
   private static final String ACTION_SHOW_HELP_CENTER = "showHelpCenter";
+  private static final String ACTION_SHOW_HELP_CENTER_ARTICLE = "showHelpCenterArticle";
   private static final String ACTION_SHOW_TICKET_REQUEST = "showTicketRequest";
   private static final String ACTION_SHOW_USER_TICKETS = "showUserTickets";
 
@@ -76,6 +78,9 @@ public class Zendesk extends CordovaPlugin {
       }
 
       helpCenterActivityBuilder.show(this.cordova.getActivity());
+    } else if (ACTION_SHOW_HELP_CENTER_ARTICLE.equals(action)) {
+      String articleId = args.getString(0);
+      ViewArticleActivity.builder(Long.parseLong(articleId)).show(this.cordova.getActivity());
     } else if (ACTION_SHOW_TICKET_REQUEST.equals(action)) {
       String subject = args.getString(0);
       List<String> tags;
