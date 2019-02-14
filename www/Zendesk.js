@@ -35,9 +35,20 @@ Zendesk.prototype.setAnonymousIdentity = function(name, email, successCallback, 
  * @param labels Array of labels to filter help center by (optional)
  * @param successCallback The callback to be executed upon command success
  * @param errorCallback The callback to be executed upon command failure
-*/
+ */
 Zendesk.prototype.showHelpCenter = function(groupType, groupIds, labels, successCallback, errorCallback) {
   exec(successCallback, errorCallback, 'Zendesk', 'showHelpCenter', [groupType, groupIds, labels]);
+}
+
+/**
+ * Opens a native view for viewing a single help center article
+ *
+ * @param articleId The ID of the article to display
+ * @param successCallback The callback to be executed upon command success
+ * @param errorCallback The callback to be executed upon command failure
+ */
+Zendesk.prototype.showHelpCenterArticle = function(articleId, successCallback, errorCallback) {
+  exec(successCallback, errorCallback, 'Zendesk', 'showHelpCenterArticle', [articleId]);
 }
 
 /**

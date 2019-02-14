@@ -56,10 +56,18 @@
   if (![labels isEqual:[NSNull null]]) {
     helpCenterConfig.labels = labels;
   }
-  
+
   UIViewController *helpCenterController = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[helpCenterConfig]];
   [self presentViewController:helpCenterController];
   
+  [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
+- (void)showHelpCenterArticle:(CDVInvokedUrlCommand *)command {
+  NSString *articleId = [command.arguments objectAtIndex:0];
+  
+  UIViewController *articleController = [ZDKHelpCenterUi buildHelpCenterArticleUiWithArticleId:articleId andConfigs:@[]];
+  [self presentViewController:articleController];
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
