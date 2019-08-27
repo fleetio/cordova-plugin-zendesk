@@ -57,6 +57,7 @@ Presents a new view for submitting a support ticket.
 
 * `subject` - The subject to assign to the new ticket (optional)
 * `tags` - An array of tags to assign to the new ticket (optional)
+* `fields` - An array of pipe-delimited ID/value pairs for custom fields to assign to the new ticket (ex: "123456|abcdef") (optional)
 
 ```
 var subject = "Widget Error";

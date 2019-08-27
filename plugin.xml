@@ -16,7 +16,7 @@
       </feature>
     </config-file>
 
-    <pod name="ZendeskSDK" version="~> 2.3.0" />
+    <pod name="ZendeskSDK" version="~> 3.0.1" />
 
     <header-file src="src/ios/Zendesk.h" />
     <source-file src="src/ios/Zendesk.m" />

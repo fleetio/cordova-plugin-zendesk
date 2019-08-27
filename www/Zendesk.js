@@ -56,11 +56,12 @@ Zendesk.prototype.showHelpCenterArticle = function(articleId, successCallback, e
  * 
  * @param subject The subject to assign to the new ticket
  * @param tags An array of tags to assign to the new ticket
+ * @param fields An array of pipe-delimited ID/value pairs for custom fields to assign to the new ticket (ex: "123456|abcdef")
  * @param successCallback The callback to be executed upon command success
  * @param errorCallback The callback to be executed upon command failure
  */
-Zendesk.prototype.showTicketRequest = function(subject, tags, successCallback, errorCallback) {
-  exec(successCallback, errorCallback, 'Zendesk', 'showTicketRequest', [subject, tags]);
+Zendesk.prototype.showTicketRequest = function(subject, tags, fields, successCallback, errorCallback) {
+  exec(successCallback, errorCallback, 'Zendesk', 'showTicketRequest', [subject, tags, fields]);
 }
 
 /**

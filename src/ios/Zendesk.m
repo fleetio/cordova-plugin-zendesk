@@ -74,6 +74,7 @@
 - (void)showTicketRequest:(CDVInvokedUrlCommand *)command {
   NSString *subject = [command.arguments objectAtIndex:0];
   NSArray *tags = [command.arguments objectAtIndex:1];
+  NSArray *fields = [command.arguments objectAtIndex:2];
   
   ZDKRequestUiConfiguration *config = [ZDKRequestUiConfiguration new];
   
@@ -83,6 +84,24 @@
   
   if (![tags isEqual:[NSNull null]]) {
     config.tags = tags;
+  }
+  
+  if (![fields isEqual:[NSNull null]]) {
+    NSMutableArray *mappedFields = [[NSMutableArray alloc] init];
+    for (NSString *field in fields) {
+      NSArray *fieldParts = [field componentsSeparatedByString:@"|"];
+      
+      if (fieldParts.count == 2) {
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        NSNumber *fieldId = [numberFormatter numberFromString:fieldParts[0]];
+        NSString *fieldValue = fieldParts[1];
+        
+        ZDKCustomField *customField = [[ZDKCustomField alloc] initWithFieldId:fieldId andValue:fieldValue];
+        [mappedFields addObject: customField];
+      }
+    }
+    
+    config.fields = mappedFields;
   }
   
   UIViewController *ticketRequestController = [ZDKRequestUi buildRequestUiWith:@[config]];
