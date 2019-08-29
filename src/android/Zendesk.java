@@ -121,7 +121,7 @@ public class Zendesk extends CordovaPlugin {
           }
         }
 
-        requestActivityBuilder.withCustomFields(mappedFields);
+        requestActivityBuilder = requestActivityBuilder.withCustomFields(mappedFields);
       }
 
       requestActivityBuilder.show(this.cordova.getActivity());
