@@ -112,7 +112,7 @@ public class Zendesk extends CordovaPlugin {
         ArrayList<CustomField> mappedFields = new ArrayList();
 
         for (String field: fields) {
-          String[] fieldParts = field.split("|");
+          String[] fieldParts = field.split("\\|");
           if (fieldParts.length == 2) {
             Long fieldId = Long.parseLong(fieldParts[0]);
             String fieldValue = fieldParts[1];
