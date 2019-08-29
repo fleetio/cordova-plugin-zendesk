@@ -84,11 +84,18 @@ public class Zendesk extends CordovaPlugin {
     } else if (ACTION_SHOW_TICKET_REQUEST.equals(action)) {
       String subject = args.getString(0);
       List<String> tags;
+      List<String> fields;
 
       if (!args.isNull(1)) {
         tags = jsonArrayToList(args.getJSONArray(1));
       } else {
         tags = new ArrayList<>();
+      }
+
+      if (!args.isNull(2)) {
+        fields = jsonArrayToList(args.getJSONArray(2));
+      } else {
+        fields = new ArrayList<>();
       }
 
       RequestUiConfig.Builder requestActivityBuilder = RequestActivity.builder();
@@ -99,6 +106,22 @@ public class Zendesk extends CordovaPlugin {
 
       if (!tags.isEmpty()) {
         requestActivityBuilder = requestActivityBuilder.withTags(tags);
+      }
+
+      if (!fields.isEmpty()) {
+        ArrayList<CustomField> mappedFields = new ArrayList();
+
+        for (String field: fields) {
+          String[] fieldParts = field.split("|");
+          if (fieldParts.length == 2) {
+            Long fieldId = Long.parseLong(fieldParts[0]);
+            String fieldValue = fieldParts[1];
+            CustomField customField = new CustomField(fieldId, fieldValue);
+            mappedFields.add(customField);
+          }
+        }
+
+        requestActivityBuilder.withCustomFields(mappedFields);
       }
 
       requestActivityBuilder.show(this.cordova.getActivity());
